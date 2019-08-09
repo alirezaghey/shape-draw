@@ -12,7 +12,7 @@ export class Rectangle {
     this.color = color;
   }
 
-  drawRect = ctx =>
+  draw = ctx =>
     ctx.strokeRect(
       this.corners.tl.x,
       this.corners.tl.y,
