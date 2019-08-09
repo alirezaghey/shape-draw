@@ -1,10 +1,12 @@
 export class Triangle {
   constructor(x, y, color = '#000') {
+    this.type = 'triangle';
+    this.id = Math.floor(Math.random() * 10000);
     this.origin = { x: x, y: y };
     this.corners = {
-      t: { x: x, y: y + 50 },
+      t: { x: x, y: y - 50 },
       bl: { x: x - 50, y: y + 50 },
-      br: { x: x + 50, y: y - 50 }
+      br: { x: x + 50, y: y + 50 }
     };
     this.width = 100;
     this.heigth = 100;
