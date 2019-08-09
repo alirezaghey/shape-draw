@@ -7,20 +7,21 @@
 .container {
   display: grid;
   width: 100%;
-  grid-template-columns: 100px 1fr 100px;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 0.2rem;
   .sidebar-left {
     background-color: grey;
   }
   .sidebar-right {
     background-color: grey;
+    .selected {
+      color: red;
+    }
   }
   .main-content {
     background-color: grey;
 
     .canvas {
-      width: 100%;
-      height: 600px;
       border: 1px solid black;
     }
   }
