@@ -26,30 +26,35 @@ export default class Canvas {
 
   drawShapes = () => {
     const ctx = this.canvas.getContext('2d');
-    ctx.clearRect(0, 0, this.canvas.with, this.canvas.height);
+    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.storage.store.shapes.forEach(shape => {
-      const x = shape.x;
-      const y = shape.y;
-      ctx.strokeRect(x - 50, y - 50, 100, 100);
+      switch (shape.type) {
+        case 'Circle':
+          this.drawCircle(ctx, shape.x, shape.y, 50);
+          break;
+        case 'Rectangle':
+          this.drawRect(ctx, shape.x - 50, shape.y - 50, 100, 100);
+          break;
+        case 'Triangle':
+          this.drawTriangle(ctx, shape.x, shape.y - 50);
+        default:
+          break;
+      }
     });
-    // ctx.lineWidth = 10;
-    // ctx.moveTo(x, y);
-    // ctx.strokeRect(75, 140, 150, 110);
-    // ctx.beginPath();
-    // ctx.arc(
-    // Number(this.storage.store.shapes[0].x),
-    // Number(this.storage.store.shapes[0].y),
-    //   x,
-    //   y,
-    //   50,
-    //   0,
-    //   2 * Math.PI
-    // );
-    // ctx.stroke();
-    // this.storage.store.shapes.forEach(shape => {
-    // ctx.beginPath();
-    // ctx.arc(shape.x, shape.y, 5, 0, 2 * Math.PI);
-    // ctx.stroke();
-    // });
+  };
+  drawRect = (ctx, x, y, width, heigth) => ctx.strokeRect(x, y, width, heigth);
+  drawCircle = (ctx, x, y, radius) => {
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, 2 * Math.PI);
+    ctx.stroke();
+  };
+  drawTriangle = (ctx, x, y) => {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x - 50, y + 100);
+    ctx.lineTo(x + 50, y + 100);
+    ctx.lineTo(x, y);
+    ctx.closePath();
+    ctx.stroke();
   };
 }
