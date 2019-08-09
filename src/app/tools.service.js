@@ -20,7 +20,21 @@ export default class Tools {
       );
       this.toolsContainer.appendChild(el);
     }
-    this.selectedTool = this.tools.Circle;
+    this.changeSelectedTool(this.tools.Circle);
   }
-  changeSelectedTool = tool => (this.selectedTool = this.tools[tool]);
+  changeSelectedTool = tool => {
+    // The same tool has been clicked on. Do nothing!
+    if (this.selectedTool === this.tools[tool]) return;
+    console.log(`.tools-${this.selectedTool}`);
+    if (this.selectedTool) {
+      document
+        .querySelector(`.tools-${this.selectedTool}`)
+        .classList.remove('selected');
+    }
+    this.selectedTool = this.tools[tool];
+    console.log(`.tools-${this.selectedTool}`);
+    document
+      .querySelector(`.tools-${this.selectedTool}`)
+      .classList.add('selected');
+  };
 }
