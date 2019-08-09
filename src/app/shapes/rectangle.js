@@ -1,5 +1,7 @@
 export class Rectangle {
   constructor(x, y, width, heigth, color = '#000') {
+    this.type = 'rectangle';
+    this.id = Math.floor(Math.random() * 10000);
     this.origin = { x: x, y: y };
     this.corners = {
       tl: { x: x - width / 2, y: y - heigth / 2 },
