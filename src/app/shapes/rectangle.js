@@ -12,11 +12,13 @@ export class Rectangle {
     this.color = color;
   }
 
-  draw = ctx =>
+  draw = ctx => {
+    ctx.strokeStyle = this.color;
     ctx.strokeRect(
       this.corners.tl.x,
       this.corners.tl.y,
       this.width,
       this.heigth
     );
+  };
 }
