@@ -12,9 +12,22 @@ export class Rectangle {
     this.width = width;
     this.heigth = heigth;
     this.color = color;
+    this.selected = false;
   }
 
+  isInItsArea = (x, y) =>
+    x >= this.corners.tl.x &&
+    x <= this.corners.br.x &&
+    y >= this.corners.tl.y &&
+    y <= this.corners.bl.y;
+
+  Area = () =>
+    Math.abs(this.corners.tl.x - this.corners.br.x) *
+    Math.abs(this.corners.tl.y - this.corners.br.y);
+
   draw = ctx => {
+    const lineWidth = ctx.lineWidth;
+    ctx.lineWidth = this.selected ? lineWidth + 2 : lineWidth;
     ctx.strokeStyle = this.color;
     ctx.strokeRect(
       this.corners.tl.x,
@@ -22,5 +35,6 @@ export class Rectangle {
       this.width,
       this.heigth
     );
+    ctx.lineWidth = lineWidth;
   };
 }
