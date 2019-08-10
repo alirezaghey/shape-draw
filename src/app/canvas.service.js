@@ -31,7 +31,7 @@ export default class Canvas {
 
   selectShape = (x, y) => {
     this.storage.store.shapes.forEach(shape =>
-      shape.isInItsArea(x, y)
+      shape.inInBounds(x, y)
         ? (shape.selected = true)
         : (shape.selected = false)
     );

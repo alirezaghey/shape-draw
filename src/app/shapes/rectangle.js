@@ -13,7 +13,7 @@ export class Rectangle extends Shape {
     this.heigth = heigth;
   }
 
-  isInItsArea = (x, y) =>
+  inInBounds = (x, y) =>
     x >= this.corners.tl.x &&
     x <= this.corners.br.x &&
     y >= this.corners.tl.y &&
@@ -27,6 +27,7 @@ export class Rectangle extends Shape {
     const lineWidth = ctx.lineWidth;
     ctx.lineWidth = this.selected ? lineWidth + 2 : lineWidth;
     ctx.strokeStyle = this.color;
+    ctx.beginPath();
     ctx.strokeRect(
       this.corners.tl.x,
       this.corners.tl.y,
