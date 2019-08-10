@@ -13,19 +13,28 @@ export default class Canvas {
   onMouseUp = e => {
     console.log('offsetX:', e.offsetX, 'offsetY:', e.offsetY);
     console.log(e);
-    // this.storage.addShape({
-    //   type: this.tools.selectedTool,
-    //   x: e.offsetX,
-    //   y: e.offsetY,
-    //   id: Math.floor(Math.random() * 1000)
-    // });
-    const shape = this.createShape(e.offsetX, e.offsetY);
-
-    if (shape) this.storage.addShape(shape);
+    if (
+      this.tools.selectedTool === this.tools.tools.Circle ||
+      this.tools.selectedTool === this.tools.tools.Rectangle ||
+      this.tools.selectedTool === this.tools.tools.Triangle
+    ) {
+      const shape = this.createShape(e.offsetX, e.offsetY);
+      if (shape) this.storage.addShape(shape);
+    } else if (this.tools.selectedTool === this.tools.tools.Select)
+      this.selectShape(e.offsetX, e.offsetY);
   };
 
   notify = () => {
     console.log('Canvas notified!');
+    this.drawShapes();
+  };
+
+  selectShape = (x, y) => {
+    this.storage.store.shapes.forEach(shape =>
+      shape.isInItsArea(x, y)
+        ? (shape.selected = true)
+        : (shape.selected = false)
+    );
     this.drawShapes();
   };
 
@@ -51,20 +60,5 @@ export default class Canvas {
     const ctx = this.canvas.getContext('2d');
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.storage.store.shapes.forEach(shape => shape.draw(ctx));
-  };
-  drawRect = (ctx, x, y, width, heigth) => ctx.strokeRect(x, y, width, heigth);
-  drawCircle = (ctx, x, y, radius) => {
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, 2 * Math.PI);
-    ctx.stroke();
-  };
-  drawTriangle = (ctx, x, y) => {
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(x - 50, y + 100);
-    ctx.lineTo(x + 50, y + 100);
-    ctx.lineTo(x, y);
-    ctx.closePath();
-    ctx.stroke();
   };
 }
