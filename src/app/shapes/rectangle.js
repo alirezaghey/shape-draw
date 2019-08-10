@@ -1,8 +1,8 @@
-export class Rectangle {
+import { Shape } from './shape';
+export class Rectangle extends Shape {
   constructor(x, y, width, heigth, color = '#000') {
+    super(x, y, color);
     this.type = 'rectangle';
-    this.id = Math.floor(Math.random() * 10000);
-    this.origin = { x: x, y: y };
     this.corners = {
       tl: { x: x - width / 2, y: y - heigth / 2 },
       tr: { x: x + width / 2, y: y - heigth / 2 },
@@ -11,8 +11,6 @@ export class Rectangle {
     };
     this.width = width;
     this.heigth = heigth;
-    this.color = color;
-    this.selected = false;
   }
 
   isInItsArea = (x, y) =>

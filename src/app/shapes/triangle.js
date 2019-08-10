@@ -1,8 +1,9 @@
-export class Triangle {
+import { Shape } from './shape';
+
+export class Triangle extends Shape {
   constructor(x, y, color = '#000') {
+    super(x, y, color);
     this.type = 'triangle';
-    this.id = Math.floor(Math.random() * 10000);
-    this.origin = { x: x, y: y };
     this.corners = {
       t: { x: x, y: y - 50 },
       bl: { x: x - 50, y: y + 50 },
@@ -10,8 +11,6 @@ export class Triangle {
     };
     this.width = 100;
     this.heigth = 100;
-    this.color = color;
-    this.selected = false;
   }
 
   draw = ctx => {

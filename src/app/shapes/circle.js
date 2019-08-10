@@ -1,11 +1,9 @@
-export class Circle {
+import { Shape } from './shape';
+export class Circle extends Shape {
   constructor(x, y, radius, color = '#000') {
+    super(x, y, color);
     this.type = 'circle';
-    this.id = Math.floor(Math.random() * 10000);
-    this.origin = { x: x, y: y };
     this.radius = radius;
-    this.color = color;
-    this.selected = false;
   }
 
   isInItsArea = (x, y) =>
