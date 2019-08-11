@@ -14,13 +14,13 @@ export default class Canvas {
     console.log('offsetX:', e.offsetX, 'offsetY:', e.offsetY);
     console.log(e);
     if (
-      this.tools.selectedTool === this.tools.tools.Circle ||
-      this.tools.selectedTool === this.tools.tools.Rectangle ||
-      this.tools.selectedTool === this.tools.tools.Triangle
+      this.tools.selectedTool === this.tools.toolType.Circle ||
+      this.tools.selectedTool === this.tools.toolType.Rectangle ||
+      this.tools.selectedTool === this.tools.toolType.Triangle
     ) {
       const shape = this.createShape(e.offsetX, e.offsetY);
       if (shape) this.storage.addShape(shape);
-    } else if (this.tools.selectedTool === this.tools.tools.Select)
+    } else if (this.tools.selectedTool === this.tools.toolType.Select)
       this.selectShape(e.offsetX, e.offsetY);
   };
 
@@ -30,10 +30,8 @@ export default class Canvas {
   };
 
   selectShape = (x, y) => {
-    this.storage.store.shapes.forEach(shape =>
-      shape.inInBounds(x, y)
-        ? (shape.selected = true)
-        : (shape.selected = false)
+    this.storage.store.shapes.forEach(
+      shape => (shape.selected = shape.isInBounds(x, y))
     );
     this.drawShapes();
   };
@@ -41,13 +39,13 @@ export default class Canvas {
   createShape = (x, y) => {
     let shape = null;
     switch (this.tools.selectedTool) {
-      case this.tools.tools.Circle:
+      case this.tools.toolType.Circle:
         shape = new Circle(x, y, 100);
         break;
-      case this.tools.tools.Rectangle:
+      case this.tools.toolType.Rectangle:
         shape = new Rectangle(x, y, 100, 100);
         break;
-      case this.tools.tools.Triangle:
+      case this.tools.toolType.Triangle:
         shape = new Triangle(x, y);
         break;
       default:

@@ -6,7 +6,7 @@ export class Circle extends Shape {
     this.radius = radius;
   }
 
-  inInBounds = (x, y) =>
+  isInBounds = (x, y) =>
     (x - this.origin.x) ** 2 + (y - this.origin.y) ** 2 <= this.radius ** 2;
 
   Area = () => Math.PI * this.radius ** 2;
