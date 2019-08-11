@@ -19,5 +19,6 @@ export class Circle extends Shape {
     ctx.arc(this.origin.x, this.origin.y, this.radius, 0, 2 * Math.PI);
     ctx.stroke();
     ctx.lineWidth = lineWidth;
+    if (this.selected) this.drawOrigin(ctx);
   };
 }

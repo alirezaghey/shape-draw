@@ -25,6 +25,7 @@ export class Triangle extends Shape {
     ctx.closePath();
     ctx.stroke();
     ctx.lineWidth = lineWidth;
+    if (this.selected) this.drawOrigin(ctx);
   };
 
   isInBounds = (x, y) => {

@@ -5,4 +5,10 @@ export class Shape {
     this.selected = false;
     this.id = Math.floor(Math.random() * 10000);
   }
+
+  drawOrigin = ctx => {
+    ctx.strokeStyle = '#444';
+    ctx.beginPath();
+    ctx.strokeRect(this.origin.x - 2, this.origin.y + 2, 4, 4);
+  };
 }
