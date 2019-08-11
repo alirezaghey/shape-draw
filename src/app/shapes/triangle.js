@@ -27,7 +27,7 @@ export class Triangle extends Shape {
     ctx.lineWidth = lineWidth;
   };
 
-  inInBounds = (x, y) => {
+  isInBounds = (x, y) => {
     const a1 = this.Area({ c1: { x: x, y: y } });
     const a2 = this.Area({ c2: { x: x, y: y } });
     const a3 = this.Area({ c3: { x: x, y: y } });

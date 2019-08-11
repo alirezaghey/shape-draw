@@ -13,7 +13,7 @@ export class Rectangle extends Shape {
     this.heigth = heigth;
   }
 
-  inInBounds = (x, y) =>
+  isInBounds = (x, y) =>
     x >= this.corners.tl.x &&
     x <= this.corners.br.x &&
     y >= this.corners.tl.y &&
