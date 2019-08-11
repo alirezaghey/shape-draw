@@ -35,5 +35,6 @@ export class Rectangle extends Shape {
       this.heigth
     );
     ctx.lineWidth = lineWidth;
+    if (this.selected) this.drawOrigin(ctx);
   };
 }
