@@ -10,4 +10,4 @@ https://shape-draw.herokuapp.com/
 
 `npm i`
 
-`npm watch`
+`npm run watch`
